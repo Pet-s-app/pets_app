@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pets_app/core/observer/bloc_observer.dart';
+import 'package:pets_app/core/routes/route_generator.dart';
+import 'package:pets_app/core/routes/routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  runApp(const Pets());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Pets extends StatelessWidget {
+  const Pets({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return ScreenUtilInit(
+      designSize: const Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return const MaterialApp(
+          title: 'Pets App',
+          initialRoute: Routes.login,
+          onGenerateRoute: RouteGenerator.getRoute,
+        );
+      },
     );
   }
 }
