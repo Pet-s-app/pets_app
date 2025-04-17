@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pets_app/core/routes/routes.dart';
+import 'package:pets_app/features/auth/presentation/view/emailcheck.dart';
 import 'package:pets_app/features/auth/presentation/view/login.dart';
+import 'package:pets_app/features/auth/presentation/view/newPassword.dart';
 import 'package:pets_app/features/auth/presentation/view/register.dart';
 import 'package:pets_app/features/auth/presentation/view/start_screen.dart';
 
@@ -13,6 +15,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const Login());
       case Routes.startScreen:
         return MaterialPageRoute(builder: (_) => const StartScreen());
+      case Routes.emailCheck:
+        return MaterialPageRoute(builder: (_) => const Emailcheck());
+            case Routes.updatePassword:
+        return MaterialPageRoute(builder: (_) => const Newpassword());
 
       default:
         return _undefinedRoute();

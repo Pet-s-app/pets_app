@@ -1,30 +1,26 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pets_app/core/resources/color_manager.dart';
+import 'package:pets_app/core/resources/font_manager.dart';
 import 'package:pets_app/core/routes/routes.dart';
 import 'package:pets_app/core/shared/widgets/custom_elevated_button.dart';
 import 'package:pets_app/core/shared/widgets/deafult_text_field.dart';
 import 'package:pets_app/core/utils/helpers/helper_functons.dart';
 import 'package:pets_app/core/utils/helpers/validation_helper.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class Newpassword extends StatefulWidget {
+  const Newpassword({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<Newpassword> createState() => _NewpasswordState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _NewpasswordState extends State<Newpassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confrimPasswordController =
-      TextEditingController();
+  final TextEditingController _confrimPasswordController = TextEditingController();
   late StreamSubscription<bool> keyboardSubscription;
 
   @override
@@ -43,9 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _userNameController.dispose();
-    _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
     _confrimPasswordController.dispose();
     super.dispose();
@@ -55,66 +48,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: EdgeInsets.only(top: 96.h),
+        minimum: EdgeInsets.only(top: 100.h),
         child: Form(
           key: _formKey,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Create Account',
+                    'Update Your Password',
                     style: HelperFunction.textTheme(context).headlineLarge,
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 27.h,
                   ),
-                  Text(
-                    'Get Started',
-                    style: HelperFunction.textTheme(context)
-                        .headlineLarge!
-                        .copyWith(
-                          color: ColorManager.black,
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 50.h,
-                  ),
-                  DefaultTextFormField(
-                    hintText: 'Username',
-                    textEditingController: _userNameController,
-                    textCapitalization: TextCapitalization.words,
+                  Image.asset(
+                    'assets/images/updatePassword.png',
+                    width: 324.w,
+                    height: 324.h,
+                    fit: BoxFit.cover,
                   ),
                   SizedBox(
                     height: 27.h,
                   ),
                   DefaultTextFormField(
-                    hintText: 'Email',
-                    textEditingController: _emailController,
-                    textInputType: TextInputType.emailAddress,
-                    validator: (email) => ValidationHelper.isValidEmail(email),
-                  ),
-                  SizedBox(
-                    height: 27.h,
-                  ),
-                  DefaultTextFormField(
-                    hintText: 'phone',
-                    textEditingController: _phoneController,
-                  ),
-                  SizedBox(
-                    height: 27.h,
-                  ),
-                  DefaultTextFormField(
-                    hintText: 'Password',
+                    hintText: 'New Password',
                     isPassword: true,
                     textEditingController: _passwordController,
                     validator: (password) =>
                         ValidationHelper.isValidPassword(password),
                   ),
                   SizedBox(
-                    height: 27.h,
+                    height: 35.h,
                   ),
                   DefaultTextFormField(
                     hintText: 'Confrim password',
@@ -131,20 +98,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   CustomElevatedButton(
                     onPressed: () {},
-                    child: const Text('Sign Up'),
-                  ),
-                  SizedBox(
-                    height: 33.h,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, Routes.login);
-                    },
-                    child: Text(
-                      'Already have an account',
-                      style: HelperFunction.textTheme(context)
-                          .bodyMedium!
-                          .copyWith(color: ColorManager.darkGrey),
+                    child: const Text(
+                      'Update',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
