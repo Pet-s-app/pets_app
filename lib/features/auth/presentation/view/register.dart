@@ -145,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: HelperFunction.textTheme(context)
                           .bodyMedium!
                           .copyWith(color: ColorManager.darkGrey),
-                    ),~
+                    ),
                   ),
                 ],
               ),
