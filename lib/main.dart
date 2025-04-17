@@ -27,7 +27,7 @@ class Pets extends StatelessWidget {
           title: 'Pets App',
           theme: lightTheme,
            
-          initialRoute: Routes.startScreen,
+          initialRoute: Routes.updatePassword,
           onGenerateRoute: RouteGenerator.getRoute,
         );
       },

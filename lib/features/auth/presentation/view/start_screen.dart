@@ -95,12 +95,12 @@ class _StartScreenState extends State<StartScreen> {
                           onPressed: () {
                             Navigator.pushReplacementNamed(context, Routes.register);
                           },
-                          child: const Text('Register'),
                           buttonStyle: ElevatedButton.styleFrom(
                             elevation: 0,
                             backgroundColor: Colors.white,
                             foregroundColor: Colors.black,
                           ),
+                          child: const Text('Register'),
                           
                         ),
                       ),
