@@ -6,4 +6,5 @@ class ColorManager {
   static const Color black = Color(0xFF000000);
   static const Color darkGrey = Color(0xFF6B6A6A);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color pinklite = Color(0xFFFFFCFB);
 }

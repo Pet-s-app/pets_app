@@ -10,21 +10,18 @@ import 'package:pets_app/core/shared/widgets/deafult_text_field.dart';
 import 'package:pets_app/core/utils/helpers/helper_functons.dart';
 import 'package:pets_app/core/utils/helpers/validation_helper.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confrimPasswordController =
-      TextEditingController();
+
   late StreamSubscription<bool> keyboardSubscription;
 
   @override
@@ -43,11 +40,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _userNameController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
-    _confrimPasswordController.dispose();
     super.dispose();
   }
 
@@ -55,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: EdgeInsets.only(top: 96.h),
+        minimum: EdgeInsets.only(top: 210.h),
         child: Form(
           key: _formKey,
           child: Padding(
@@ -64,28 +58,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Create Account',
+                    'Login here',
                     style: HelperFunction.textTheme(context).headlineLarge,
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  Text(
-                    'Get Started',
-                    style: HelperFunction.textTheme(context)
-                        .headlineLarge!
-                        .copyWith(
-                          color: ColorManager.black,
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 50.h,
-                  ),
-                  DefaultTextFormField(
-                    hintText: 'Username',
-                    textEditingController: _userNameController,
-                    textCapitalization: TextCapitalization.words,
+                  Align(
+                    alignment:Alignment.center,
+                    child: Text(
+                      "Welcome back you've\nbeen missed!",
+                      style: HelperFunction.textTheme(context)
+                          .headlineSmall!
+                          .copyWith(
+                            color: ColorManager.black,
+                            fontWeight: FontWeight.w600,
+                          
+                          ),
+                          textAlign: TextAlign.center,
+                    ),
                   ),
                   SizedBox(
                     height: 27.h,
@@ -100,53 +91,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 27.h,
                   ),
                   DefaultTextFormField(
-                    hintText: 'phone',
-                    textEditingController: _phoneController,
-                  ),
-                  SizedBox(
-                    height: 27.h,
-                  ),
-                  DefaultTextFormField(
                     hintText: 'Password',
                     isPassword: true,
                     textEditingController: _passwordController,
                     validator: (password) =>
                         ValidationHelper.isValidPassword(password),
                   ),
+                  
                   SizedBox(
-                    height: 27.h,
+                    height: 33.h,
                   ),
-                  DefaultTextFormField(
-                    hintText: 'Confrim password',
-                    textEditingController: _confrimPasswordController,
-                    isPassword: true,
-                    validator: (confirmPassword) =>
-                        ValidationHelper.isValidConfirmPassword(
-                      confirmPassword,
-                      _confrimPasswordController,
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Forget your password?',
+                      style: HelperFunction.textTheme(context)
+                          .bodyMedium!
+                          .copyWith(color: ColorManager.primary),
                     ),
                   ),
+               
                   SizedBox(
                     height: 33.h,
                   ),
                   CustomElevatedButton(
                     onPressed: () {},
-                    child: const Text('Sign Up'),
+                    child: const Text('Sign in'),
                   ),
-                  SizedBox(
-                    height: 33.h,
+                                    SizedBox(
+                    height: 25.h,
                   ),
-                  InkWell(
+                  Align(
+                    alignment: Alignment.center,
+                    child: InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, Routes.login);
+                        Navigator.pushReplacementNamed(context, Routes.register);
                       },
-                    child: Text(
-                      'Already have an account',
-                      style: HelperFunction.textTheme(context)
-                          .bodyMedium!
-                          .copyWith(color: ColorManager.darkGrey),
-                    ),~
+                      child: Text(
+                        'Create new account',
+                        style: HelperFunction.textTheme(context)
+                            .bodyMedium!
+                            .copyWith(color: ColorManager.grey),
+                      ),
+                    ),
                   ),
+                
                 ],
               ),
             ),

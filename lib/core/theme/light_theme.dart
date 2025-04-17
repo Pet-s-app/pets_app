@@ -27,7 +27,6 @@ final lightTheme = ThemeData(
       backgroundColor: ColorManager.primary,
       fixedSize: Size(double.infinity, 74.h),
       textStyle: GoogleFonts.inter(
-        color: ColorManager.white,
         fontSize: FontSize.s24,
       ),
       foregroundColor: ColorManager.white,
