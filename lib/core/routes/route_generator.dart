@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pets_app/core/routes/routes.dart';
+import 'package:pets_app/features/auth/presentation/view/login.dart';
 import 'package:pets_app/features/auth/presentation/view/register.dart';
+import 'package:pets_app/features/auth/presentation/view/start_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
-      // case Routes.login:
-      //   return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case Routes.login:
+        return MaterialPageRoute(builder: (_) => const Login());
+      case Routes.startScreen:
+        return MaterialPageRoute(builder: (_) => const StartScreen());
 
       default:
         return _undefinedRoute();

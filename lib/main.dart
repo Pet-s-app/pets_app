@@ -26,7 +26,8 @@ class Pets extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Pets App',
           theme: lightTheme,
-          initialRoute: Routes.register,
+           
+          initialRoute: Routes.startScreen,
           onGenerateRoute: RouteGenerator.getRoute,
         );
       },
