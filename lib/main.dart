@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pets_app/core/observer/bloc_observer.dart';
 import 'package:pets_app/core/routes/route_generator.dart';
 import 'package:pets_app/core/routes/routes.dart';
+import 'package:pets_app/core/theme/light_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +22,11 @@ class Pets extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return const MaterialApp(
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Pets App',
-          initialRoute: Routes.login,
+          theme: lightTheme,
+          initialRoute: Routes.register,
           onGenerateRoute: RouteGenerator.getRoute,
         );
       },
