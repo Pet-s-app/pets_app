@@ -87,6 +87,7 @@ class _LoginState extends State<Login> {
                     textEditingController: _emailController,
                     textInputType: TextInputType.emailAddress,
                     validator: (email) => ValidationHelper.isValidEmail(email),
+                    
                   ),
                   SizedBox(
                     height: 27.h,

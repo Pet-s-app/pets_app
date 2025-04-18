@@ -87,8 +87,9 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
         hintText: widget.hintText,
         hintStyle: HelperFunction.textTheme(context).bodySmall,
         border: OutlineInputBorder(
+          
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: ColorManager.grey,width: 2.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),

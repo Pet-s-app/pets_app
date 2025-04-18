@@ -37,7 +37,7 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: EdgeInsets.only(top: 50.h),
+        minimum: EdgeInsets.only(top: 97.h),
         child: Form(
           key: _formKey,
           child: Padding(
@@ -52,12 +52,16 @@ class _StartScreenState extends State<StartScreen> {
                     height: 265.h,
                     fit: BoxFit.cover,
                   ),
+                  SizedBox(
+                    height:0.h,
+                  ),
                   Image.asset(
                     'assets/images/start_screen2.png',
                     width: 375.w,
                     height: 163.h,
                     fit: BoxFit.cover,
                   ),
+                  SizedBox(height: 24.h),
                   Text(
                     'Find Your Perfect Pet Match Here',
                     style: HelperFunction.textTheme(context).headlineLarge,
@@ -76,7 +80,7 @@ class _StartScreenState extends State<StartScreen> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 33.h,
+                    height: 87.h,
                   ),
                   Row(
                     children: [
@@ -101,22 +105,9 @@ class _StartScreenState extends State<StartScreen> {
                             foregroundColor: Colors.black,
                           ),
                           child: const Text('Register'),
-                          
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Create new account',
-                      style: HelperFunction.textTheme(context)
-                          .bodyMedium!
-                          .copyWith(color: ColorManager.grey),
-                    ),
                   ),
                 ],
               ),
