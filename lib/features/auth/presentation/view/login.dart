@@ -57,6 +57,7 @@ class _LoginState extends State<Login> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  
                   Text(
                     'Login here',
                     style: HelperFunction.textTheme(context).headlineLarge,
@@ -101,13 +102,18 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 33.h,
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forget your password?',
-                      style: HelperFunction.textTheme(context)
-                          .bodyMedium!
-                          .copyWith(color: ColorManager.primary),
+                  InkWell(
+                    onTap:(){
+                      Navigator.pushReplacementNamed(context, Routes.emailCheck);
+                    },
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'Forget your password?',
+                        style: HelperFunction.textTheme(context)
+                            .bodyMedium!
+                            .copyWith(color: ColorManager.primary),
+                      ),
                     ),
                   ),
                
