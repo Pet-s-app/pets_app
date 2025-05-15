@@ -19,9 +19,13 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(
-          title: const Text('No Route Found'),
+          title: const Text(
+            'No Route Found',
+          ),
         ),
-        body: const Center(child: Text('No Route Found')),
+        body: const Center(
+          child: Text('No Route Found'),
+        ),
       ),
     );
   }

@@ -18,6 +18,9 @@ class DefaultTextFormField extends StatefulWidget {
     this.isSearch = false,
     this.textCapitalization = TextCapitalization.none,
     this.textInputFormatter,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.focusNode,
     super.key,
   });
   final TextEditingController? textEditingController;
@@ -31,6 +34,9 @@ class DefaultTextFormField extends StatefulWidget {
   final bool isSearch;
   final TextCapitalization textCapitalization;
   final TextInputFormatter? textInputFormatter;
+  final TextInputAction? textInputAction;
+  final void Function()? onEditingComplete;
+  final FocusNode? focusNode;
 
   @override
   State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
@@ -41,19 +47,18 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: widget.focusNode,
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      onEditingComplete: () {
-        FocusManager.instance.primaryFocus!.nextFocus();
-      },
+      onEditingComplete: widget.onEditingComplete,
       inputFormatters: widget.textInputFormatter == null
           ? []
           : [
               widget.textInputFormatter!,
             ],
       textCapitalization: widget.textCapitalization,
-      textInputAction: TextInputAction.done,
+      textInputAction: widget.textInputAction,
       controller: widget.textEditingController,
       onChanged: widget.onChanged,
       cursorColor: ColorManager.primary,

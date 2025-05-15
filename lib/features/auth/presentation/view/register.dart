@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +7,7 @@ import 'package:pets_app/core/shared/widgets/custom_elevated_button.dart';
 import 'package:pets_app/core/shared/widgets/deafult_text_field.dart';
 import 'package:pets_app/core/utils/helpers/helper_functons.dart';
 import 'package:pets_app/core/utils/helpers/validation_helper.dart';
+import 'package:pets_app/core/utils/ui/ui_utils.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -24,14 +24,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confrimPasswordController =
       TextEditingController();
+  final FocusNode _userNode = FocusNode();
+  final FocusNode _emailNode = FocusNode();
+  final FocusNode _phoneNode = FocusNode();
+  final FocusNode _passwordNode = FocusNode();
+  final FocusNode _confirmPasswordNode = FocusNode();
   late StreamSubscription<bool> keyboardSubscription;
 
   @override
   void initState() {
     super.initState();
-
     var keyboardVisibilityController = KeyboardVisibilityController();
-
     keyboardSubscription =
         keyboardVisibilityController.onChange.listen((bool visible) {
       if (!visible) {
@@ -47,6 +50,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _phoneController.dispose();
     _passwordController.dispose();
     _confrimPasswordController.dispose();
+    _userNode.dispose();
+    _emailNode.dispose();
+    _phoneNode.dispose();
+    _passwordNode.dispose();
+    _confirmPasswordNode.dispose();
     super.dispose();
   }
 
@@ -83,53 +91,71 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   DefaultTextFormField(
                     hintText: 'Username',
+                    focusNode: _userNode,
                     textEditingController: _userNameController,
                     textCapitalization: TextCapitalization.words,
+                    onEditingComplete: () =>
+                        FocusScope.of(context).requestFocus(_emailNode),
                   ),
                   SizedBox(
                     height: 27.h,
                   ),
                   DefaultTextFormField(
                     hintText: 'Email',
+                    focusNode: _emailNode,
                     textEditingController: _emailController,
                     textInputType: TextInputType.emailAddress,
                     validator: (email) => ValidationHelper.isValidEmail(email),
+                    onEditingComplete: () =>
+                        FocusScope.of(context).requestFocus(_phoneNode),
                   ),
                   SizedBox(
                     height: 27.h,
                   ),
                   DefaultTextFormField(
                     hintText: 'phone',
+                    focusNode: _phoneNode,
                     textEditingController: _phoneController,
+                    onEditingComplete: () =>
+                        FocusScope.of(context).requestFocus(_passwordNode),
                   ),
                   SizedBox(
                     height: 27.h,
                   ),
                   DefaultTextFormField(
                     hintText: 'Password',
-                    isPassword: true,
+                    focusNode: _passwordNode,
                     textEditingController: _passwordController,
+                    isPassword: true,
                     validator: (password) =>
                         ValidationHelper.isValidPassword(password),
+                    onEditingComplete: () => FocusScope.of(context)
+                        .requestFocus(_confirmPasswordNode),
                   ),
                   SizedBox(
                     height: 27.h,
                   ),
                   DefaultTextFormField(
                     hintText: 'Confrim password',
-                    textEditingController: _confrimPasswordController,
+                    focusNode: _confirmPasswordNode,
                     isPassword: true,
-                    validator: (confirmPassword) =>
+                    textEditingController: _confrimPasswordController,
+                    validator: (confrimPassword) =>
                         ValidationHelper.isValidConfirmPassword(
-                      confirmPassword,
-                      _confrimPasswordController,
+                      confrimPassword,
+                      _passwordController,
                     ),
+                    onEditingComplete: () {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                    },
                   ),
                   SizedBox(
                     height: 33.h,
                   ),
                   CustomElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      UIUtils.showLoading(context);
+                    },
                     child: const Text('Sign Up'),
                   ),
                   SizedBox(
